@@ -49,10 +49,84 @@
 .navbar-item {
   padding: 4px 0;
   border-bottom: 2px solid transparent;
+  cursor: pointer;
 }
 
 .navbar-link {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.carousel-container {
+  background-color: aliceblue;
+  padding: 52px 32px;
+}
+.carousel-wrapper {
+  position: relative;
+}
+.carousel {
+  z-index: 1;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  overflow: hidden;
+  padding: 24px 0;
+}
+
+.carousel-item {
+  width: 250px;
+  height: 250px;
+  background-color: lightgreen;
+  flex-shrink: 0;
+}
+.carousel-btn {
+  outline: none;
+  border: none;
+  background: white;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left-btn {
+  position: absolute;
+  left: 0;
+  transform: translate(-80%, -50%) rotate(180deg);
+  top: 50%;
+}
+
+.right-btn {
+  position: absolute;
+  right: 0;
+  transform: translate(80%, -50%);
+  top: 50%;
+}
+
+.carousel-btn:hover {
+  background-color: lightgray;
+  border: black;
+  color: orange;
+}
+
+.carousel-btn:hover span {
+  transform: translateX(4px);
+  transition: transform 250ms linear;
+}
+
+.carousel-btn:active {
+  background-color: gray;
+  transition: all 100ms;
+}
+.carousel-item {
+  transition: all 400ms ease-in-out;
+}
+.carousel-item:hover {
+  transform: scale(1.02);
+  box-shadow: 2px 2px 10px 0.5px gray;
+}
+
+.carousel-item:last-child {
+  margin-right: 250px;
 }

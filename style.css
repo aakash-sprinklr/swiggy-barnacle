@@ -5,6 +5,8 @@
   box-shadow: 0px 1px 10px 1px gray;
   position: sticky;
   top: 0;
+  background-color: white;
+  z-index: 2;
 }
 
 .flex {
@@ -66,9 +68,9 @@
 }
 .carousel-wrapper {
   position: relative;
+  z-index: 1;
 }
 .carousel {
-  z-index: 1;
   display: flex;
   gap: 32px;
   align-items: center;
@@ -89,7 +91,7 @@
   padding: 12px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10;
+  z-index: 2;
 }
 
 .left-btn {

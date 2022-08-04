@@ -6,6 +6,7 @@ const carousel = document.querySelector(".carousel");
 const filterTabs = document.querySelectorAll(".filter-tab");
 const filterSection = document.querySelector(".filter-wrapper");
 const cardContainer = document.querySelector(".card-container");
+
 filterTabs.forEach((filterTab) => {
   filterTab.addEventListener("click", (event) => onFilterClick(filterTab));
 });
@@ -42,8 +43,7 @@ const carouselObserver = new IntersectionObserver(
 
 const observer = new window.IntersectionObserver(
   ([entry]) => {
-    if (entry.boundingClientRect.top > 0) {
-    } else {
+    if (entry.boundingClientRect.top <= 0) {
       header.classList.add("hide-header");
       filterSection.classList.add("filter-sticky");
     }
@@ -91,8 +91,6 @@ data.forEach((src) => {
 </div>
   
   `;
-
-  console.log("called");
   card.innerHTML = element;
   cardContainer.append(card);
 });

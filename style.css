@@ -6,7 +6,8 @@
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 2;
+  z-index: 100;
+  transition: all 500ms;
 }
 
 .flex {
@@ -168,8 +169,7 @@
   border-bottom: 1px solid orange;
 }
 .hide-header {
-  display: none;
-  transition: all 200ms;
+  transform: translateY(-100%);
 }
 
 .filter-sticky {

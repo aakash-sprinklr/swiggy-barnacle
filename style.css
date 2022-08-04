@@ -137,11 +137,12 @@
 
 .filter-wrapper {
   background-color: white;
-  height: 82px;
+  /* height: 82px; */
 }
 
 .filter-container {
-  height: 100%;
+  padding: 16px 0;
+  /* height: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -153,6 +154,7 @@
   display: flex;
   gap: 24px;
   cursor: pointer;
+  flex-wrap: wrap;
 }
 
 .filter-tab {
@@ -181,10 +183,11 @@
 .card-container {
   display: grid;
   margin-top: 40px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, 250px);
   justify-items: center;
   gap: 32px;
   position: relative;
+  justify-content: center;
 }
 
 .card {
@@ -277,4 +280,49 @@
 
 .footer-item:hover {
   border-bottom: 1px solid white;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .filter-container {
+    height: unset;
+  }
+  .filter-wrapper {
+    height: unset;
+  }
+  .filter-container {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .filter-heading {
+    margin-top: 24px;
+    font-size: 18px;
+  }
+
+  .filter-tabs {
+    gap: 8px;
+    justify-content: center;
+  }
+  .filter-tab {
+    padding: 4px;
+  }
+
+  .footer-sections {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin: 32px 0;
+  }
+  .footer-section {
+    margin: 16px 0;
+  }
 }

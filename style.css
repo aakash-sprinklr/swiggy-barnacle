@@ -134,3 +134,44 @@
 .carousel-item:last-child {
   margin-right: 250px;
 }
+
+.filter-wrapper {
+  background-color: white;
+  height: 82px;
+}
+
+.filter-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9e9eb;
+  font-family: "Poppins", sans-serif;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 24px;
+  cursor: pointer;
+}
+
+.filter-tab {
+  padding: 16px 0;
+}
+.filter-tab:hover {
+  color: orange;
+}
+
+.tab-selected {
+  border-bottom: 1px solid orange;
+}
+.hide-header {
+  display: none;
+  transition: all 200ms;
+}
+
+.filter-sticky {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #e9e9eb;
+}

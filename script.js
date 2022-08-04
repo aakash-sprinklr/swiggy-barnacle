@@ -91,6 +91,8 @@ data.forEach((src) => {
 </div>
   
   `;
+
+  console.log("called");
   card.innerHTML = element;
   cardContainer.append(card);
 });

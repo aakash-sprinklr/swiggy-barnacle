@@ -7,6 +7,10 @@ const filterTabs = document.querySelectorAll(".filter-tab");
 const filterSection = document.querySelector(".filter-wrapper");
 const cardContainer = document.querySelector(".card-container");
 
+const LEFT = "LEFT";
+const RIGHT = "RIGHT";
+const GAP = 32;
+
 filterTabs.forEach((filterTab) => {
   filterTab.addEventListener("click", (event) => onFilterClick(filterTab));
 });
@@ -19,8 +23,8 @@ const onFilterClick = (filterTab) => {
 
 const scrollCarousel = (direction) => {
   let width =
-    Math.floor(document.querySelector(".carousel-item").scrollWidth) + 32;
-  width = direction == "left" ? -width : width;
+    Math.floor(document.querySelector(".carousel-item").scrollWidth) + GAP;
+  width = direction == LEFT ? -width : width;
 
   carousel.scrollBy({
     left: width,
@@ -57,8 +61,8 @@ const observer = new window.IntersectionObserver(
 observer.observe(filterSection);
 carouselObserver.observe(carouselContainer);
 
-rightButton.addEventListener("click", () => scrollCarousel("right"));
-leftButton.addEventListener("click", () => scrollCarousel("left"));
+rightButton.addEventListener("click", () => scrollCarousel(RIGHT));
+leftButton.addEventListener("click", () => scrollCarousel(LEFT));
 
 let data = [
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/gfkicyyqxr0aegwrtyfh",

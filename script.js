@@ -6,6 +6,7 @@ const carousel = document.querySelector(".carousel");
 const filterTabs = document.querySelectorAll(".filter-tab");
 const filterSection = document.querySelector(".filter-wrapper");
 const cardContainer = document.querySelector(".card-container");
+const carouselItem = document.querySelector(".carousel-item");
 
 const LEFT = "LEFT";
 const RIGHT = "RIGHT";
@@ -22,8 +23,7 @@ const onFilterClick = (filterTab) => {
 };
 
 const scrollCarousel = (direction) => {
-  let width =
-    Math.floor(document.querySelector(".carousel-item").scrollWidth) + GAP;
+  let width = Math.floor(carouselItem.scrollWidth) + GAP;
   width = direction == LEFT ? -width : width;
 
   carousel.scrollBy({

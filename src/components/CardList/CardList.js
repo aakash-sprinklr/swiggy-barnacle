@@ -4,7 +4,7 @@ import Card from "./Card";
 
 const CardList = () => {
   return (
-    <div className="card-container container">
+    <div data-testid="card-list" className="card-container container">
       {IMAGE_LIST.map((src, index) => (
         <Card
           dataTestId={index == 0 ? "card" : ""}

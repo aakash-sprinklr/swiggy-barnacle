@@ -30,7 +30,7 @@ const FooterSection = ({ sectionName, sectionItems }) => {
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div data-testid="footer" className="footer">
       <div className="container">
         <div className="footer-sections">
           <div className="footer-logo">

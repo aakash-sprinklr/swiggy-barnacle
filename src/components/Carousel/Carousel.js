@@ -1,12 +1,49 @@
 import "./Carousel.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LEFT, RIGHT, GAP } from "../../constants/constant";
 import CarouselButton from "./CarouselButton";
+
+const CLEAREANCE_RIGHT = 300;
 
 const Carousel = () => {
   const carouselItem = useRef();
   const carouselRef = useRef();
   const carouselContainerRef = useRef();
+
+  const [btnVisible, setbtnVisble] = useState({
+    left: false,
+    right: true,
+  });
+
+  const { left, right } = btnVisible;
+
+  const checkVisiblity = (direction) => {
+    const carouselElement = carouselRef.current;
+    if (
+      direction === RIGHT &&
+      carouselElement.scrollWidth - CLEAREANCE_RIGHT <=
+        carouselElement.clientWidth + carouselElement.scrollLeft
+    ) {
+      setbtnVisble({
+        right: false,
+        left: true,
+      });
+      return;
+    }
+
+    if (direction === LEFT && carouselElement.scrollLeft === 0) {
+      setbtnVisble({
+        right: true,
+        left: false,
+      });
+      return;
+    }
+
+    setbtnVisble({
+      right: true,
+      left: true,
+    });
+  };
 
   const scrollCarousel = (direction) => {
     let width = Math.floor(carouselItem.current.scrollWidth) + GAP;
@@ -16,6 +53,8 @@ const Carousel = () => {
       left: width,
       behavior: "smooth",
     });
+
+    checkVisiblity(direction);
   };
 
   useEffect(() => {
@@ -41,20 +80,28 @@ const Carousel = () => {
     <div ref={carouselContainerRef} className="carousel-container">
       <div className="container">
         <div className="carousel-wrapper">
-          <CarouselButton
-            onClick={() => scrollCarousel(LEFT)}
-            className="left-btn"
-            data-testid="carousel-left-btn"
-          >
-            <span className="material-symbols-outlined">arrow_forward_ios</span>
-          </CarouselButton>
-          <CarouselButton
-            onClick={() => scrollCarousel(RIGHT)}
-            className="right-btn"
-            data-testid="carousel-right-btn"
-          >
-            <span className="material-symbols-outlined">arrow_forward_ios</span>
-          </CarouselButton>
+          {left ? (
+            <CarouselButton
+              onClick={() => scrollCarousel(LEFT)}
+              className="left-btn"
+              data-testid="carousel-left-btn"
+            >
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
+            </CarouselButton>
+          ) : null}
+          {right ? (
+            <CarouselButton
+              onClick={() => scrollCarousel(RIGHT)}
+              className="right-btn"
+              data-testid="carousel-right-btn"
+            >
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
+            </CarouselButton>
+          ) : null}
 
           <div data-testid="carousel" ref={carouselRef} className="carousel">
             {new Array(11).fill(0).map((_, index) => (

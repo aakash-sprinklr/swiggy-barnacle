@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Header from "../../components/Header/Header";
+import React from "react";
 
 test("Location is present", () => {
   render(<Header />);
@@ -15,9 +16,8 @@ test("All navbar items are present", () => {
 
 test("All navbar items must have link", () => {
   render(<Header />);
-  expect(
-    screen.getAllByRole("link").forEach((item) => {
-      expect(item).toHaveAttribute("href");
-    })
-  );
+
+  screen.getAllByRole("link").forEach((item) => {
+    expect(item).toHaveAttribute("href");
+  });
 });

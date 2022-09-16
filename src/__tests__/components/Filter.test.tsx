@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Filter from "../../components/Filter/Filter";
-
+import React from "react";
 beforeEach(() => {
   const observe = jest.fn();
   const unobserve = jest.fn();
   const disconnect = jest.fn();
 
-  window.IntersectionObserver = jest.fn(() => ({
+  (window.IntersectionObserver as any) = jest.fn(() => ({
     observe,
     unobserve,
     disconnect,
@@ -15,16 +15,16 @@ beforeEach(() => {
 });
 
 test("Intersection Obeserver cleanup", () => {
-  let { disconnect } = IntersectionObserver();
+  let observer = new IntersectionObserver(() => {});
   const { unmount } = render(<Filter />);
   unmount();
-  expect(disconnect).toBeCalledTimes(1);
+  expect(observer.disconnect).toBeCalledTimes(1);
 });
 
 test("Observer is attached", () => {
-  let { observe } = IntersectionObserver();
+  let observer = new IntersectionObserver(() => {});
   render(<Filter />);
-  expect(observe).toBeCalledTimes(1);
+  expect(observer.observe).toBeCalledTimes(1);
 });
 
 test("Tab switch", async () => {

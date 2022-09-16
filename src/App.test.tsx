@@ -5,7 +5,7 @@ beforeEach(() => {
   const observe = jest.fn();
   const unobserve = jest.fn();
   const disconnect = jest.fn();
-  window.IntersectionObserver = jest.fn(() => ({
+  (window.IntersectionObserver as any) = jest.fn(() => ({
     observe,
     unobserve,
     disconnect,
@@ -14,6 +14,7 @@ beforeEach(() => {
 
 test("Header is rendered", () => {
   render(<App />);
+
   const header = screen.getByTestId("header");
   expect(header).toBeInTheDocument();
 });

@@ -9,7 +9,7 @@ beforeEach(() => {
   const unobserve = jest.fn();
   const disconnect = jest.fn();
 
-  window.IntersectionObserver = jest.fn(() => ({
+  (window.IntersectionObserver as any) = jest.fn(() => ({
     observe,
     unobserve,
     disconnect,
@@ -22,8 +22,9 @@ test("carousel button click", async () => {
   render(<Carousel />);
 
   const carouselItem = screen.getByTestId("carousel-item");
-  const leftButton = screen.getByTestId("carousel-left-btn");
+  let leftButton = screen.queryByTestId("carousel-left-btn");
   const rightButton = screen.getByTestId("carousel-right-btn");
+  expect(leftButton).not.toBeInTheDocument();
   await userEvent.click(rightButton);
 
   expect(scrollMock).toHaveBeenNthCalledWith(1, {
@@ -31,6 +32,7 @@ test("carousel button click", async () => {
     behavior: "smooth",
   });
 
+  leftButton = screen.getByTestId("carousel-left-btn");
   await userEvent.click(leftButton);
   expect(scrollMock).toHaveBeenNthCalledWith(2, {
     left: -(Math.floor(carouselItem.scrollWidth) + GAP),
@@ -39,14 +41,14 @@ test("carousel button click", async () => {
 });
 
 test("Carousel Intersection Obeserver cleanup", () => {
-  let { disconnect } = IntersectionObserver();
+  let observer = new IntersectionObserver(() => {});
   const { unmount } = render(<Carousel />);
   unmount();
-  expect(disconnect).toBeCalledTimes(1);
+  expect(observer.disconnect).toBeCalledTimes(1);
 });
 
 test("Carouser Intersection Observer is attached", () => {
-  let { observe } = IntersectionObserver();
+  let observer = new IntersectionObserver(() => {});
   render(<Carousel />);
-  expect(observe).toBeCalledTimes(1);
+  expect(observer.observe).toBeCalledTimes(1);
 });

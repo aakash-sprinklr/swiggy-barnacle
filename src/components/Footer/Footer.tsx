@@ -1,21 +1,12 @@
 import "./Footer.css";
+import { FOOTER_SECTIONS } from "../../constants/constant";
 
-const footerSections = [
-  {
-    sectionName: "Products",
-    sectionItems: ["Modern Care", "Modern Reasearch", "Training", "Partners"],
-  },
-  {
-    sectionName: "Something",
-    sectionItems: ["Modern Care", "Modern Reasearch", "Training", "Partners"],
-  },
-  {
-    sectionName: "Else",
-    sectionItems: ["Modern Care", "Modern Reasearch", "Training", "Partners"],
-  },
-];
+interface IFooterSectionProps {
+  sectionName: string;
+  sectionItems: Array<any>;
+}
 
-const FooterSection = ({ sectionName, sectionItems }) => {
+const FooterSection = ({ sectionName, sectionItems }: IFooterSectionProps) => {
   return (
     <div className="footer-section">
       <p className="footer-heading"> {sectionName}</p>
@@ -34,9 +25,9 @@ const Footer = () => {
       <div className="container">
         <div className="footer-sections">
           <div className="footer-logo">
-            <img src="sprinklr-full-logo.svg" />
+            <img src="sprinklr-full-logo.svg" alt="Sprinklr logo" />
           </div>
-          {footerSections.map((section) => (
+          {FOOTER_SECTIONS.map((section) => (
             <FooterSection key={section.sectionName} {...section} />
           ))}
         </div>

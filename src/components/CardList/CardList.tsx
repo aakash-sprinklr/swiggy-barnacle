@@ -1,13 +1,14 @@
+import React, { ReactElement } from "react";
 import "./CardList.css";
 import { IMAGE_LIST } from "../../constants/constant";
 import Card from "./Card";
 
-const CardList = () => {
+const CardList = (): ReactElement => {
   return (
     <div data-testid="card-list" className="card-container container">
       {IMAGE_LIST.map((src, index) => (
         <Card
-          dataTestId={index == 0 ? "card" : ""}
+          dataTestId={index === 0 ? "card" : ""}
           key={`card-${index}`}
           src={src}
         />

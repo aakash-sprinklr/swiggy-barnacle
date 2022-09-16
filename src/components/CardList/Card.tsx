@@ -1,7 +1,12 @@
-import { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import "./CardList.css";
-const Card = ({ src, dataTestId }) => {
-  const [visible, setVisible] = useState(false);
+
+interface ICard {
+  src: string;
+  dataTestId: string;
+}
+const Card = ({ src, dataTestId }: ICard): ReactElement => {
+  const [visible, setVisible] = useState<boolean>(false);
 
   return (
     <div
@@ -11,7 +16,7 @@ const Card = ({ src, dataTestId }) => {
       onMouseLeave={() => setVisible(false)}
     >
       <div className="content">
-        <img className="card-image" src={src} />
+        <img className="card-image" src={src} alt="Burger Point" />
         <div className="food-description">
           <h3 className="food-name">Burger Point</h3>
           <p className="food-cuisine">Healthy Food, Indian, Bakery</p>

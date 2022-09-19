@@ -15,9 +15,8 @@ test("All navbar items are present", () => {
 
 test("All navbar items must have link", () => {
   render(<Header />);
-  expect(
-    screen.getAllByRole("link").forEach((item) => {
-      expect(item).toHaveAttribute("href");
-    })
-  );
+
+  screen.getAllByRole("link").forEach((item) => {
+    expect(item).toHaveAttribute("href");
+  });
 });

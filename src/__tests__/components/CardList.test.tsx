@@ -1,6 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 import CardList from "../../components/CardList/CardList";
 
 test("Add link on hover", async () => {

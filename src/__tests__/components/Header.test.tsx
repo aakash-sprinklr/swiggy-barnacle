@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import Header from "../../components/Header/Header";
-import React from "react";
 
 test("Location is present", () => {
   render(<Header />);

@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Carousel from "../../components/Carousel/Carousel";
-import React from "react";
-import { GAP } from "../../constants/constant";
+import CarouselWrapper from "../../components/CarouselWrapper";
+import { GAP } from "../../constants/carousel";
 
 beforeEach(() => {
   const observe = jest.fn();
@@ -19,7 +18,7 @@ beforeEach(() => {
 test("carousel button click", async () => {
   const scrollMock = jest.fn();
   Element.prototype.scrollBy = scrollMock;
-  render(<Carousel />);
+  render(<CarouselWrapper />);
 
   const carouselItem = screen.getByTestId("carousel-item");
   let leftButton = screen.queryByTestId("carousel-left-btn");
@@ -42,13 +41,13 @@ test("carousel button click", async () => {
 
 test("Carousel Intersection Obeserver cleanup", () => {
   let observer = new IntersectionObserver(() => {});
-  const { unmount } = render(<Carousel />);
+  const { unmount } = render(<CarouselWrapper />);
   unmount();
   expect(observer.disconnect).toBeCalledTimes(1);
 });
 
 test("Carouser Intersection Observer is attached", () => {
   let observer = new IntersectionObserver(() => {});
-  render(<Carousel />);
+  render(<CarouselWrapper />);
   expect(observer.observe).toBeCalledTimes(1);
 });

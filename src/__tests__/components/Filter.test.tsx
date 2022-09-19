@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Filter from "../../components/Filter/Filter";
-import React from "react";
+
 beforeEach(() => {
   const observe = jest.fn();
   const unobserve = jest.fn();

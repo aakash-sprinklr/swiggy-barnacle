@@ -1,49 +1,30 @@
 import "./Header.css";
-import { NAVBAR_ITEMS } from "../../constants/constant";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { NAVBAR_ITEMS } from "../../constants/header";
+import {
+  Navbar,
+  NavbarGroup,
+  NavbarItem,
+  NavbarItems,
+  NavbarLogo,
+} from "../Navbar/Navbar";
+import { ReactElement } from "react";
 
-interface INavbarItem {
-  icon: IconDefinition;
-  label: string;
-}
-
-const Header = () => {
-  return (
-    <div data-testid="header" className="navbar-wrapper">
-      <div className="navbar-container container">
-        <div className="navbar-left">
-          <div className="navbar-logo">
-            <img
-              src="logo.svg"
-              className="logo"
-              width="32px"
-              alt="Sprinklr logo"
-            />
-          </div>
-          <span className="navbar-location">Gurugram, India</span>
-        </div>
-        <div className="navbar-right">
-          <div data-testid="nabvar-items" className="navbar-items">
-            {NAVBAR_ITEMS.map(({ icon, label }) => (
-              <NavbarItem key={label} icon={icon} label={label} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const NavbarItem = ({ icon, label }: INavbarItem) => {
-  return (
-    <div className="navbar-item">
-      <a href="##" className="navbar-link">
-        <FontAwesomeIcon icon={icon} />
-        <p>{label}</p>
-      </a>
-    </div>
-  );
-};
+const Header = (): ReactElement => (
+  <div data-testid="header" className="navbar-wrapper">
+    <Navbar>
+      <NavbarGroup className="navbar-left">
+        <NavbarLogo src="logo.svg" />
+        <span className="navbar-location">Gurugram, India</span>
+      </NavbarGroup>
+      <NavbarGroup className="navbar-right">
+        <NavbarItems>
+          {NAVBAR_ITEMS.map(({ icon, label }) => (
+            <NavbarItem key={label} icon={icon} label={label} />
+          ))}
+        </NavbarItems>
+      </NavbarGroup>
+    </Navbar>
+  </div>
+);
 
 export default Header;

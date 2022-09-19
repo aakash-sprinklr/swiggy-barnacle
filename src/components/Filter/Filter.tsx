@@ -1,7 +1,6 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
-import React from "react";
 import "./Filter.css";
-import { FILTER_ITEMS } from "../../constants/constant";
+import { FILTER_ITEMS } from "../../constants/filter";
 
 const Filter = (): ReactElement => {
   const [selected, setSelected] = useState<number>(0);
